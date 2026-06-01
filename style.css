@@ -111,6 +111,14 @@ a { color: inherit; }
 
 .doctor-info .degree { font-size: 0.8rem; color: var(--c-ink-soft); }
 
+.doctor-info .role {
+    font-size: 0.78rem;
+    color: var(--c-accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+}
+
 .doctor-info .specialty {
     font-size: 0.8rem;
     color: var(--c-ink-soft);
@@ -130,24 +138,25 @@ a { color: inherit; }
     gap: 2px;
 }
 
-.text-logo-icon { color: var(--c-primary); margin-bottom: 2px; }
+.text-logo-icon { color: var(--c-primary); margin-bottom: 2px; font-size: 2rem; }
 
 .text-logo-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.75rem;
-    letter-spacing: 2px;
+    font-size: 2.75rem;
+    letter-spacing: 3px;
     color: var(--c-primary);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.05;
+    text-transform: uppercase;
 }
 
 .text-logo-tagline {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--c-accent);
     font-style: italic;
     font-weight: 600;
-    margin-top: 4px;
-    letter-spacing: 1px;
+    margin-top: 6px;
+    letter-spacing: 1.5px;
 }
 
 /* ==========================================================================
@@ -510,6 +519,7 @@ a { color: inherit; }
 }
 .degree-small { font-size: 0.85rem; color: var(--c-ink-soft); font-weight: 500; }
 .doc-card-specialty { font-size: 0.9rem; color: var(--c-ink-muted); margin-top: 6px; }
+.doc-card-bio { font-size: 0.82rem; color: var(--c-ink-soft); line-height: 1.55; margin-top: 8px; }
 .mini-leaf {
     display: inline-flex;
     color: var(--c-primary);
