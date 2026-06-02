@@ -1772,6 +1772,7 @@ a { color: inherit; }
         min-width: 0;
         justify-content: flex-start;
     }
+    .navbar-brand__name { font-size: 1.05rem; letter-spacing: 0.3px; }
     .btn-appointment__full { display: none; }
     .btn-appointment__short { display: inline; }
     .btn-appointment { padding: 9px 14px; font-size: 0.74rem; gap: 6px; }
@@ -1811,6 +1812,15 @@ a { color: inherit; }
     .info-split-grid .booking-card { grid-column: auto; }
     .map-placeholder { min-height: 220px; }
 
+    /* Blog topbar: give the brand priority so it never gets clipped */
+    .article-topbar { gap: 12px; }
+    .article-topbar__brand {
+        flex: 1 1 auto;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+    .article-back { flex: 0 0 auto; font-size: 0.8rem; }
+
     /* Blog */
     .blog-container { grid-template-columns: 1fr; gap: 20px; }
     .blog-card { padding: 26px; }
@@ -1831,8 +1841,15 @@ a { color: inherit; }
     :root { --side-x: 14px; }
 
     .navbar { padding-block: 10px; gap: 8px; }
-    .navbar-brand { gap: 7px; }
-    .navbar-brand .icon { font-size: 1.4rem; }
+    .navbar-brand { gap: 6px; }
+    .navbar-brand .icon { font-size: 1.1rem; }
+    .navbar-brand__name { font-size: 1.5rem; letter-spacing: 0.2px; }
+
+    /* Blog topbar: collapse "Back" to its arrow icon so the full brand
+       name stays visible on phones (text node still read by screen readers) */
+    .article-topbar__brand { font-size: 1.7rem; }
+    .article-back { font-size: 0; gap: 0; }
+    .article-back .icon { width: 20px; height: 20px; }
 
     /* At true phone widths, collapse the appointment button to an icon only
        so the brand name always has room and never gets clipped */
@@ -1880,14 +1897,22 @@ a { color: inherit; }
 }
 /* ==========================================================================
    16B. RESPONSIVE — EXTRA-SMALL MOBILE (<= 360px)
+
    ========================================================================== */
-@media (max-width: 360px) {
+@media (max-width: 380px) {
+    .navbar-brand__name { font-size: 1.2rem}
+
+
+}
+
+   @media (max-width: 360px) {
     :root { --side-x: 12px; }
 
     .navbar { gap: 6px; }
-    .navbar-brand { gap: 6px; }
-    .navbar-brand .icon { font-size: 1.2rem; }
-
+    .navbar-brand { gap: 5px; }
+    .navbar-brand .icon { font-size: 1rem; }
+    .navbar-brand__name { font-size: 0.85rem; letter-spacing: 0; }
+    .article-topbar__brand { font-size: 1.2rem; }
     .btn-appointment { padding: 8px; }
     .btn-appointment .icon { font-size: 1.05rem; }
     .menu-toggle { width: 22px; height: 16px; }
