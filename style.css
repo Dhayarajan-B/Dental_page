@@ -7,7 +7,7 @@
     --c-surface: #ffffff;
     --c-ink: #1a1a1a;
     --c-ink-muted: #555a5e;
-    --c-ink-soft: #7b8085;
+    --c-ink-soft: #686d71;
     --c-line: #ececec;
     --c-line-soft: #f1ede5;
     --c-primary: #1b4d3e;
@@ -16,6 +16,8 @@
     --c-primary-soft: #e2ece9;
     --c-accent: #b58c44;
     --c-accent-dark: #9a7434;
+    /* Darker gold reserved for accent-coloured TEXT on light backgrounds (passes WCAG AA) */
+    --c-accent-text: #8a6a2e;
     --c-gold-soft: #f4ead7;
     --shadow-sm: 0 2px 8px rgba(15, 45, 36, 0.04);
     --shadow-md: 0 10px 30px rgba(15, 45, 36, 0.07);
@@ -35,6 +37,9 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 }
+
+/* Keep anchored sections clear of the sticky navbar on direct #hash visits */
+[id$="-section"] { scroll-margin-top: 84px; }
 
 * {
     margin: 0;
@@ -113,7 +118,7 @@ a { color: inherit; }
 
 .doctor-info .role {
     font-size: 0.78rem;
-    color: var(--c-accent);
+    color: var(--c-accent-text);
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-top: 3px;
@@ -140,6 +145,17 @@ a { color: inherit; }
 
 .text-logo-icon { color: var(--c-primary); margin-bottom: 2px; font-size: 2rem; }
 
+.text-logo-image {
+    height: 90px;
+    width: auto;
+    margin-bottom: 4px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .text-logo-image { height: 68px; }
+}
+
 .text-logo-title {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.1rem, 3.2vw, 2.7rem);
@@ -152,11 +168,34 @@ a { color: inherit; }
 
 .text-logo-tagline {
     font-size: 0.95rem;
-    color: var(--c-accent);
+    color: var(--c-accent-text);
     font-style: italic;
     font-weight: 600;
     margin-top: 6px;
     letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   BRAND TREE LOGO MOTIF (replaces the legacy leaf icon everywhere)
+   ========================================================================== */
+.brand-mark {
+    display: inline-block;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.brand-mark--nav { height: 32px; }
+
+/* Hero brand logo — shown only when the top clinic header is hidden (<= 1024px) */
+.hero-logo {
+    display: none;
+    height: 110px;
+    width: auto;
+    max-width: 88%;
+    margin: 0 auto 22px;
+    object-fit: contain;
 }
 
 /* ==========================================================================
@@ -185,7 +224,10 @@ a { color: inherit; }
     background: transparent;
     border: 0;
     cursor: pointer;
-    padding: 0;
+    /* Enlarge the tap target to ~52x46px without moving the bars (WCAG 2.5.5) */
+    padding: 12px;
+    margin: -8px;
+    box-sizing: content-box;
 }
 
 .menu-toggle span {
@@ -218,9 +260,9 @@ a { color: inherit; }
 
 .navbar-brand__name {
     /* Fluid size — single source of truth across every screen.
-       Grows with the viewport but never overflows the nav row. */
-    font-size: clamp(0.95rem, 3.7vw, 1.25rem);
-    letter-spacing: 1px;
+       Scales up on tablet (bigger at 768) yet always fits on phones (375–425). */
+    font-size: clamp(1rem, 0.55rem + 1.8vw, 1.4rem);
+    letter-spacing: 0.4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -290,10 +332,14 @@ a { color: inherit; }
     margin-bottom: 18px;
 }
 
-.leaf-icon {
-    color: var(--c-primary);
-    margin-bottom: 18px;
-    display: inline-flex;
+/* Small decorative divider under section subtitles (replaces the old leaf) */
+.title-divider {
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin: 16px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--c-accent), var(--c-primary));
 }
 
 .hero-description {
@@ -416,7 +462,7 @@ a { color: inherit; }
 .section-subtitle {
     display: inline-block;
     font-size: 0.78rem;
-    color: var(--c-accent);
+    color: var(--c-accent-text);
     letter-spacing: 2.5px;
     font-weight: 700;
     text-transform: uppercase;
@@ -437,12 +483,6 @@ a { color: inherit; }
     color: var(--c-ink-soft);
     font-size: 1rem;
     line-height: 1.65;
-}
-
-.leaf-separator {
-    color: var(--c-primary);
-    margin-top: 14px;
-    display: inline-flex;
 }
 
 /* ==========================================================================
@@ -515,7 +555,7 @@ a { color: inherit; }
 }
 
 .doc-card-details { min-width: 0; }
-.doc-card-details h4 {
+.doc-card-details h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     color: var(--c-ink);
@@ -525,12 +565,6 @@ a { color: inherit; }
 .degree-small { font-size: 0.85rem; color: var(--c-ink-soft); font-weight: 500; }
 .doc-card-specialty { font-size: 0.9rem; color: var(--c-ink-muted); margin-top: 6px; }
 .doc-card-bio { font-size: 0.82rem; color: var(--c-ink-soft); line-height: 1.55; margin-top: 8px; }
-.mini-leaf {
-    display: inline-flex;
-    color: var(--c-primary);
-    margin-top: 10px;
-}
-
 /* Doctor — areas of expertise + signature quote */
 .doc-expertise { margin-top: 14px; }
 .doc-expertise__label {
@@ -619,7 +653,7 @@ a { color: inherit; }
     font-size: 1.5rem;
     margin-bottom: 16px;
 }
-.welcome-highlight h4 {
+.welcome-highlight h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     color: var(--c-ink);
@@ -705,111 +739,93 @@ a { color: inherit; }
 
 .treatment-card {
     position: relative;
-    background-color: var(--c-surface);
-    border: 1px solid var(--c-line);
+    background: transparent;
+    border: 0;
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.8s var(--ease), box-shadow 0.8s var(--ease), border-color 0.5s ease;
+    height: 440px;
+    perspective: 1800px;
+    -webkit-perspective: 1800px;
+}
+
+.treatment-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.85s var(--ease);
     will-change: transform;
 }
 
-.treatment-card::before {
+.treatment-card.is-flipped .treatment-card__inner {
+    transform: rotateY(180deg);
+}
+
+.treatment-card__face {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-line);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* ---------- FRONT FACE ---------- */
+.treatment-card__face--front {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+    padding: 40px 26px;
+    background:
+        radial-gradient(125% 90% at 50% -12%, var(--c-primary-soft) 0%, transparent 58%),
+        var(--c-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.6s var(--ease);
+}
+
+.treatment-card:hover .treatment-card__face--front { box-shadow: var(--shadow-lg); }
+
+.treatment-card__face--front::before {
     content: "";
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 0.9s var(--ease);
-    z-index: 3;
+    transition: transform 0.7s var(--ease);
 }
 
-.treatment-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(27, 77, 62, 0.2);
+.treatment-card:hover .treatment-card__face--front::before { transform: scaleX(1); }
+
+.treatment-card__icon-wrap {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 32% 26%, #ffffff 0%, var(--c-primary-soft) 68%, #cfe1d8 100%);
+    box-shadow: inset 0 0 0 1px rgba(27, 77, 62, 0.08), 0 12px 24px rgba(15, 45, 36, 0.08);
+    transition: transform 0.7s var(--ease);
 }
 
-.treatment-card:hover::before { transform: scaleX(1); }
+.treatment-card:hover .treatment-card__icon-wrap { transform: translateY(-4px) scale(1.05); }
 
-.treatment-card__media {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    background:
-        radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.55), transparent 50%),
-        linear-gradient(135deg, var(--c-primary-soft) 0%, #cfe1d8 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: var(--c-primary);
-}
-
-.treatment-card__svg {
-    width: 96px;
-    height: 96px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform 1s var(--ease), opacity 0.7s var(--ease);
-    z-index: 1;
-    position: relative;
-    will-change: transform;
-}
-
-.treatment-card:hover .treatment-card__svg {
-    transform: translateX(-130%);
-    opacity: 0;
-}
-
-/* Reveal panel that slides in from RIGHT covering the media */
-.treatment-card__reveal {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    transform: translateX(100%);
-    transition: transform 1s var(--ease);
-    z-index: 2;
-    will-change: transform;
-}
-
-.treatment-card:hover .treatment-card__reveal { transform: translateX(0); }
-
-.treatment-card__reveal-arrow {
-    color: #fff;
-    transition: transform 0.5s var(--ease);
-}
-
-.treatment-card:hover .treatment-card__reveal-arrow { transform: translateX(6px); }
-
-.treatment-card__body {
-    padding: 28px 26px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
+.treatment-card__icon {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
 }
 
 .treatment-card__title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+    font-size: 1.26rem;
     color: var(--c-primary);
     font-weight: 600;
     line-height: 1.3;
@@ -817,45 +833,220 @@ a { color: inherit; }
 
 .treatment-card__desc {
     color: var(--c-ink-muted);
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     line-height: 1.6;
-    margin-bottom: 8px;
+    max-width: 31ch;
 }
 
-.treatment-card__link {
-    margin-top: auto;
-    align-self: flex-start;
+.treatment-card__more {
+    margin-top: 4px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    color: var(--c-primary);
-    text-decoration: none;
+    gap: 9px;
+    padding: 11px 22px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.84rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.4px;
-    position: relative;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    box-shadow: 0 8px 20px rgba(15, 45, 36, 0.18);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), background 0.4s ease;
 }
 
-.treatment-card__link .icon { transition: transform 0.45s var(--ease); }
-.treatment-card:hover .treatment-card__link .icon { transform: translateX(4px); }
+.treatment-card:hover .treatment-card__more,
+.treatment-card:focus-within .treatment-card__more {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-.treatment-card__link::after {
+.treatment-card__more:hover { background: linear-gradient(135deg, var(--c-primary) 0%, #16412f 100%); }
+.treatment-card__more .tc-ico { width: 16px; height: 16px; transition: transform 0.6s var(--ease); }
+.treatment-card__more:hover .tc-ico { transform: rotate(-130deg); }
+
+/* ---------- BACK FACE ---------- */
+.treatment-card__face--back {
+    transform: rotateY(180deg);
+    background: linear-gradient(160deg, var(--c-primary) 0%, var(--c-primary-dark) 70%, var(--c-primary-darker) 100%);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.treatment-card__back-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 26px 24px 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}
+
+.treatment-card__back-scroll::-webkit-scrollbar { width: 6px; }
+.treatment-card__back-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.32); border-radius: 999px; }
+
+.treatment-card__back-eyebrow {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.treatment-card__tagline {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--c-gold-soft);
+    line-height: 1.45;
+}
+
+.treatment-card__text {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    line-height: 1.62;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.treatment-card__subhead {
+    margin-top: 16px;
+    margin-bottom: 9px;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    font-weight: 700;
+    color: var(--c-accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.treatment-card__subhead::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.treatment-card__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.treatment-card__list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.treatment-card__list li::before {
     content: "";
     position: absolute;
-    bottom: -3px;
     left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: currentColor;
-    transform: scaleX(0);
-    transform-origin: right center;
-    transition: transform 0.45s var(--ease);
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c-accent);
 }
 
-.treatment-card:hover .treatment-card__link::after,
-.treatment-card__link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left center;
+.treatment-card__list strong { color: #fff; font-weight: 600; }
+
+.treatment-card__faq { display: flex; flex-direction: column; }
+
+.treatment-card__q {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 9px;
+}
+
+.treatment-card__a {
+    margin-top: 2px;
+    font-size: 0.81rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.treatment-card__back-btn {
+    flex-shrink: 0;
+    margin: 6px 16px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+.treatment-card__back-btn:hover {
+    background: var(--c-accent);
+    border-color: var(--c-accent);
+    color: var(--c-primary-dark);
+}
+
+.treatment-card__back-btn .tc-ico { width: 16px; height: 16px; transition: transform 0.4s var(--ease); }
+.treatment-card__back-btn:hover .tc-ico { transform: translateX(-3px); }
+
+.treatment-card__more:focus-visible,
+.treatment-card__back-btn:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   GLOBAL KEYBOARD FOCUS — visible indicator for every interactive element
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible,
+.single-menu-item:focus-visible,
+.menu-toggle:focus-visible,
+.whatsapp-fab:focus-visible,
+.read-more-link:focus-visible,
+.article-back:focus-visible,
+.article-topbar__brand:focus-visible {
+    outline: 2px solid var(--c-accent-dark);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+/* CTAs with overflow:hidden can clip an outset outline — use a shadow ring instead */
+.btn-appointment:focus-visible,
+.btn-sub-appointment:focus-visible,
+.btn-whatsapp:focus-visible,
+.btn-panel-whatsapp:focus-visible,
+.btn-directions:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--c-accent-dark);
+}
+
+@media (hover: none) {
+    .treatment-card__more { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .treatment-card__inner,
+    .treatment-card__more,
+    .treatment-card__icon-wrap,
+    .treatment-card__face--front::before { transition: none; }
 }
 
 /* ==========================================================================
@@ -924,7 +1115,7 @@ a { color: inherit; }
 
 .why-feature__icon .icon { font-size: 1.7rem; stroke-width: 1.5; }
 
-.why-feature h4 {
+.why-feature h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.25rem;
     color: var(--c-ink);
@@ -1014,22 +1205,13 @@ a { color: inherit; }
     border-color: var(--c-accent);
 }
 
-.map-placeholder {
-    background:
-        radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.6), transparent 55%),
-        linear-gradient(135deg, var(--c-primary-soft) 0%, #cfe1d8 100%);
+.map-embed {
     width: 100%;
     flex: 1;
     min-height: 285px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    color: var(--c-primary);
+    border: 0;
+    display: block;
 }
-
-.map-placeholder p { font-weight: 600; font-size: 0.95rem; }
 
 .booking-card {
     padding: 38px 30px;
@@ -1095,7 +1277,7 @@ a { color: inherit; }
     text-transform: uppercase;
 }
 
-.blog-card h4 {
+.blog-card h2 {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
     color: var(--c-primary);
@@ -1112,7 +1294,7 @@ a { color: inherit; }
 
 .read-more-link {
     text-decoration: none;
-    color: var(--c-accent);
+    color: var(--c-accent-text);
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.4px;
@@ -1122,7 +1304,7 @@ a { color: inherit; }
     transition: color 0.25s ease, gap 0.3s ease;
 }
 
-.read-more-link:hover { color: var(--c-accent-dark); gap: 10px; }
+.read-more-link:hover { color: var(--c-accent-text); gap: 10px; }
 
 /* Whole-card link variant (used on the dedicated blog listing page) */
 .blog-card--link {
@@ -1134,7 +1316,7 @@ a { color: inherit; }
 }
 .blog-card--link .blog-badge { align-self: flex-start; }
 .blog-card--link p { flex: 1; }
-.blog-card--link:hover .read-more-link { color: var(--c-accent-dark); gap: 10px; }
+.blog-card--link:hover .read-more-link { color: var(--c-accent-text); gap: 10px; }
 
 /* ==========================================================================
    10B. BLOG ARTICLE PAGES
@@ -1161,13 +1343,18 @@ a { color: inherit; }
     color: var(--c-primary);
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: clamp(1.25rem, 4.6vw, 1.6rem);
-    letter-spacing: 1px;
+    /* Fluid: comfortable on desktop, always fits the full name on phones */
+    font-size: clamp(1.05rem, 0.5rem + 2vw, 1.55rem);
+    letter-spacing: 0.5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .article-topbar__brand .icon { flex-shrink: 0; }
+
+/* Brand tree logo used as the clinical-team author avatar */
+.article-author__avatar--logo { background: #fff; }
+.article-author__avatar--logo img { object-fit: contain; object-position: center; padding: 7px; }
 .article-back {
     display: inline-flex;
     align-items: center;
@@ -1635,6 +1822,9 @@ a { color: inherit; }
     /* Hide the big stacked header — navbar carries the brand from tablet down */
     .main-header { display: none; }
 
+    /* Bring the tree logo into the hero (above the title) since the header tree is gone */
+    .hero-logo { display: block; }
+
     /* Compact sticky navbar: hamburger | brand | BOOK APPOINTMENT */
     .navbar {
         padding-block: 12px;
@@ -1642,7 +1832,7 @@ a { color: inherit; }
         gap: 10px;
     }
 
-    .menu-toggle { display: flex; width: 26px; height: 20px; }
+    .menu-toggle { display: flex; }
     .unique-nav-row.is-open { opacity: 1; max-height: 480px; padding: 8px 0 14px; }
 
     .navbar-brand { display: inline-flex; }
@@ -1713,7 +1903,6 @@ a { color: inherit; }
     .hero-content { width: 100%; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
-    .leaf-icon { justify-content: center; }
     .hero-image-area { width: 100%; max-width: 620px; }
     .hero-media { max-width: 100%; aspect-ratio: 5 / 4; }
 
@@ -1735,6 +1924,15 @@ a { color: inherit; }
     /* Welcome: stack highlights, keep specializations 1 col */
     .welcome-highlights { grid-template-columns: 1fr; gap: 18px; max-width: 620px; }
     .specializations-grid { grid-template-columns: 1fr; gap: 20px; max-width: 620px; }
+
+    /* Treatments: stack to 1 col like the sibling grids (2-up flip cards are cramped here) */
+    .treatments-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     /* Slightly smaller section vertical padding */
     .hero-section,
@@ -1763,7 +1961,6 @@ a { color: inherit; }
     .hero-content { width: 100%; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
-    .leaf-icon { justify-content: center; }
     .hero-media { max-width: 100%; aspect-ratio: 4 / 5; max-height: 70vh; }
 
     /* Navbar: give the brand name room by collapsing BOOK APPOINTMENT → BOOK */
@@ -1772,7 +1969,7 @@ a { color: inherit; }
         min-width: 0;
         justify-content: flex-start;
     }
-    .navbar-brand__name { font-size: 1.05rem; letter-spacing: 0.3px; }
+    .navbar-brand__name { letter-spacing: 0.3px; }
     .btn-appointment__full { display: none; }
     .btn-appointment__short { display: inline; }
     .btn-appointment { padding: 9px 14px; font-size: 0.74rem; gap: 6px; }
@@ -1795,9 +1992,11 @@ a { color: inherit; }
 
     /* Treatments */
     .treatments-grid { grid-template-columns: 1fr; gap: 22px; }
-    .treatment-card__media { aspect-ratio: 16 / 9; }
-    .treatment-card__svg { width: 72px; height: 72px; }
-    .treatment-card__body { padding: 22px; }
+    .treatment-card { height: 430px; }
+    .treatment-card__face--front { padding: 34px 24px; }
+    .treatment-card__icon-wrap { width: 112px; height: 112px; }
+    .treatment-card__icon { width: 70px; height: 70px; }
+    .treatment-card__back-scroll { padding: 24px 20px 10px; }
 
     /* Why features */
     .why-features-grid {
@@ -1810,13 +2009,12 @@ a { color: inherit; }
     /* Info grid */
     .info-split-grid { grid-template-columns: 1fr; gap: 20px; }
     .info-split-grid .booking-card { grid-column: auto; }
-    .map-placeholder { min-height: 220px; }
+    .map-embed { min-height: 240px; }
 
     /* Blog topbar: give the brand priority so it never gets clipped */
     .article-topbar { gap: 12px; }
     .article-topbar__brand {
         flex: 1 1 auto;
-        font-size: 1.2rem;
         letter-spacing: 0.5px;
     }
     .article-back { flex: 0 0 auto; font-size: 0.8rem; }
@@ -1835,6 +2033,15 @@ a { color: inherit; }
 }
 
 /* ==========================================================================
+   RESPONSIVE — PHONES (<= 600px)
+   The hero now carries the tree logo, so drop it from the navbar to free space
+   for the clinic name.
+   ========================================================================== */
+@media (max-width: 600px) {
+    .navbar-brand .brand-mark--nav { display: none; }
+}
+
+/* ==========================================================================
    16. RESPONSIVE — SMALL MOBILE (<= 480px)
    ========================================================================== */
 @media (max-width: 480px) {
@@ -1843,13 +2050,13 @@ a { color: inherit; }
     .navbar { padding-block: 10px; gap: 8px; }
     .navbar-brand { gap: 6px; }
     .navbar-brand .icon { font-size: 1.1rem; }
-    .navbar-brand__name { font-size: 1.5rem; letter-spacing: 0.2px; }
+    .navbar-brand__name { letter-spacing: 0.2px; }
 
     /* Blog topbar: collapse "Back" to its arrow icon so the full brand
-       name stays visible on phones (text node still read by screen readers) */
-    .article-topbar__brand { font-size: 1.7rem; }
-    .article-back { font-size: 0; gap: 0; }
-    .article-back .icon { width: 20px; height: 20px; }
+       name stays visible on phones (text node still read by screen readers).
+       Keep a ~44px tap target via padding while the bars stay icon-sized. */
+    .article-back { font-size: 0; gap: 0; padding: 11px; margin: -11px; }
+    .article-back .icon { width: 22px; height: 22px; }
 
     /* At true phone widths, collapse the appointment button to an icon only
        so the brand name always has room and never gets clipped */
@@ -1857,8 +2064,6 @@ a { color: inherit; }
     .btn-appointment__short { display: none; }
     .btn-appointment { padding: 9px; gap: 0; }
     .btn-appointment .icon { font-size: 1.15rem; }
-
-    .menu-toggle { width: 24px; height: 18px; }
 
     .hero-title { font-size: 2.2rem; }
     .hero-description { font-size: 0.95rem; }
@@ -1899,13 +2104,11 @@ a { color: inherit; }
    16B. RESPONSIVE — EXTRA-SMALL MOBILE (<= 360px)
 
    ========================================================================== */
-@media (max-width: 380px) {
-    .navbar-brand__name { font-size: 1.2rem}
-
-
+@media (max-width: 380px) and (min-width: 361px) {
+    .navbar-brand__name { font-size: 1.2rem; }
 }
 
-   @media (max-width: 360px) {
+@media (max-width: 360px) {
     :root { --side-x: 12px; }
 
     .navbar { gap: 6px; }
@@ -1915,7 +2118,6 @@ a { color: inherit; }
     .article-topbar__brand { font-size: 1.2rem; }
     .btn-appointment { padding: 8px; }
     .btn-appointment .icon { font-size: 1.05rem; }
-    .menu-toggle { width: 22px; height: 16px; }
 }
 
 /* ==========================================================================
