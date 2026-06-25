@@ -1,6 +1,6 @@
 {
     "name": "Revathy Dentistree",
-    "short_name": "Revathy Dentistree",
+    "short_name": "Revathy",
     "description": "Premium dental clinic in Villupuram — implants, oral surgery, orthodontics, pediatric, cosmetic & preventive care.",
     "start_url": "/",
     "scope": "/",
@@ -10,15 +10,16 @@
     "lang": "en-IN",
     "icons": [
         {
-            "src": "favicon-32.png",
-            "sizes": "32x32",
-            "type": "image/png"
-        },
-        {
             "src": "apple-touch-icon.png",
             "sizes": "180x180",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "logo-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
         }
     ]
 }
