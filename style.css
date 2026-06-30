@@ -198,6 +198,10 @@ a { color: inherit; }
     object-fit: contain;
 }
 
+/* Brand name shown in the hero on tablet/mobile only — mirrors the desktop
+   clinic header (which is hidden <= 1024px) so the full lockup is everywhere */
+.hero-brand-name { display: none; }
+
 /* ==========================================================================
    3. NAVIGATION BAR
    ========================================================================== */
@@ -1892,8 +1896,32 @@ button:focus-visible,
     /* Hide the big stacked header — navbar carries the brand from tablet down */
     .main-header { display: none; }
 
-    /* Bring the tree logo into the hero (above the title) since the header tree is gone */
-    .hero-logo { display: block; }
+    /* Bring the full brand lockup into the hero since the stacked header is gone:
+       tree logo  ->  REVATHY DENTISTREE (bold)  ->  Growing Miles of Smiles (gold) */
+    .hero-logo { display: block; margin-bottom: 12px; }
+
+    .hero-brand-name {
+        display: block;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.9rem, 7vw, 2.9rem);
+        font-weight: 800;
+        letter-spacing: 2px;
+        line-height: 1.03;
+        color: var(--c-primary);
+        text-transform: uppercase;
+    }
+
+    /* "Growing Miles of Smiles" becomes the golden tagline beneath the name */
+    .hero-title {
+        font-size: clamp(1.05rem, 4.6vw, 1.5rem);
+        font-weight: 600;
+        font-style: italic;
+        color: var(--c-accent-text);
+        letter-spacing: 0.4px;
+        margin-top: 6px;
+        margin-bottom: 18px;
+    }
+    .hero-title br { display: none; }
 
     /* Surface the doctors on the front page now the stacked header is hidden */
     .hero-doctors { display: block; }
@@ -2139,7 +2167,6 @@ button:focus-visible,
     .btn-appointment { padding: 9px; gap: 0; }
     .btn-appointment .icon { font-size: 1.15rem; }
 
-    .hero-title { font-size: 1.85rem; }
     .hero-description { font-size: 0.95rem; }
 
     .btn-whatsapp,
