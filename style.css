@@ -518,10 +518,10 @@ a { color: inherit; }
     line-height: 1.65;
 }
 
-/* Welcome section — give the "WELCOME TO REVATHY DENTISTREE" eyebrow more
-   presence and ease the title below it (per client request) */
-.welcome-section .section-subtitle { font-size: 0.95rem; letter-spacing: 2px; }
-.welcome-section .section-title { font-size: clamp(1.45rem, 2.6vw, 1.95rem); }
+/* Welcome section — the gold "WELCOME TO REVATHY DENTISTREE" line is the lead;
+   the green title sits deliberately SMALLER than it at every screen size */
+.welcome-section .section-subtitle { font-size: clamp(1.05rem, 2.8vw, 1.3rem); letter-spacing: 2px; }
+.welcome-section .section-title { font-size: clamp(0.9rem, 2.2vw, 1.1rem); margin-top: 10px; }
 
 /* ==========================================================================
    6. OUR DOCTORS CARDS
