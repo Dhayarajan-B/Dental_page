@@ -158,21 +158,21 @@ a { color: inherit; }
 
 .text-logo-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.1rem, 3.2vw, 2.7rem);
-    letter-spacing: 3px;
+    font-size: clamp(2.5rem, 4vw, 3.3rem);
+    letter-spacing: 2.5px;
     color: var(--c-primary);
-    font-weight: 700;
-    line-height: 1.05;
+    font-weight: 800;
+    line-height: 1.02;
     text-transform: uppercase;
 }
 
 .text-logo-tagline {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: var(--c-accent-text);
     font-style: italic;
     font-weight: 600;
-    margin-top: 6px;
-    letter-spacing: 1.5px;
+    margin-top: 2px;
+    letter-spacing: 1.2px;
 }
 
 /* ==========================================================================
@@ -324,12 +324,12 @@ a { color: inherit; }
 
 .hero-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3.1rem);
     color: var(--c-primary);
-    line-height: 1.05;
+    line-height: 1.08;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 18px;
+    letter-spacing: -0.4px;
+    margin-bottom: 16px;
 }
 
 /* Small decorative divider under section subtitles (replaces the old leaf) */
@@ -354,6 +354,35 @@ a { color: inherit; }
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
+}
+
+/* Doctor names + roles on the front page — shown only on tablet/mobile,
+   where the big stacked clinic header (which carries them) is hidden */
+.hero-doctors {
+    display: none;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--c-line);
+    width: 100%;
+    max-width: 560px;
+}
+.hero-doctor + .hero-doctor { margin-top: 14px; }
+.hero-doctor__name {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    line-height: 1.3;
+}
+.hero-doctor__degree { font-size: 0.78rem; color: var(--c-ink-soft); font-weight: 500; }
+.hero-doctor__role {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--c-accent-text);
+    font-weight: 600;
+    margin-top: 1px;
+    line-height: 1.4;
 }
 
 .hero-image-area {
@@ -485,6 +514,11 @@ a { color: inherit; }
     line-height: 1.65;
 }
 
+/* Welcome section — give the "WELCOME TO REVATHY DENTISTREE" eyebrow more
+   presence and ease the title below it (per client request) */
+.welcome-section .section-subtitle { font-size: 0.95rem; letter-spacing: 2px; }
+.welcome-section .section-title { font-size: clamp(1.45rem, 2.6vw, 1.95rem); }
+
 /* ==========================================================================
    6. OUR DOCTORS CARDS
    ========================================================================== */
@@ -542,16 +576,12 @@ a { color: inherit; }
 
 .doctor-card:hover .doctor-photo { transform: scale(1.06); }
 
-/* Per-doctor framing overrides */
+/* Per-doctor framing overrides — studio portraits, face sits high & centred */
 .doctor-card__photo--geetha .doctor-photo {
-    transform: scale(1.35);
-    object-position: center 35%;
-    transform-origin: center 30%;
+    object-position: center 20%;
 }
-
-.doctor-card__photo--geetha:hover .doctor-photo,
-.doctor-card:hover .doctor-card__photo--geetha .doctor-photo {
-    transform: scale(1.45);
+.doctor-card__photo--karthik .doctor-photo {
+    object-position: center 18%;
 }
 
 .doc-card-details { min-width: 0; }
@@ -564,6 +594,7 @@ a { color: inherit; }
 }
 .degree-small { font-size: 0.85rem; color: var(--c-ink-soft); font-weight: 500; }
 .doc-card-specialty { font-size: 0.9rem; color: var(--c-ink-muted); margin-top: 6px; }
+.doc-card-affiliation { font-size: 0.8rem; color: var(--c-accent-text); font-weight: 600; line-height: 1.4; margin-top: 5px; }
 .doc-card-bio { font-size: 0.82rem; color: var(--c-ink-soft); line-height: 1.55; margin-top: 8px; }
 /* Doctor — areas of expertise + signature quote */
 .doc-expertise { margin-top: 14px; }
@@ -1803,6 +1834,37 @@ button:focus-visible,
     100% { transform: scale(1.6); opacity: 0; }
 }
 
+/* ==========================================================================
+   13C. FLOATING CALL BUTTON (sits just above the WhatsApp button)
+   ========================================================================== */
+.call-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 96px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(27, 77, 62, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.35s var(--ease), background-color 0.3s ease, box-shadow 0.35s var(--ease);
+}
+
+.call-fab:hover {
+    background-color: var(--c-primary-dark);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 16px 32px rgba(27, 77, 62, 0.5), 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.call-fab:active { transform: translateY(-1px) scale(1); }
+
+.call-fab__icon { width: 28px; height: 28px; color: #fff; stroke-width: 1.8; }
+
 @media (max-width: 768px) {
     .whatsapp-fab {
         right: max(18px, env(safe-area-inset-right));
@@ -1811,6 +1873,14 @@ button:focus-visible,
         height: 54px;
     }
     .whatsapp-fab__icon { width: 28px; height: 28px; }
+
+    .call-fab {
+        right: max(18px, env(safe-area-inset-right));
+        bottom: calc(max(18px, env(safe-area-inset-bottom)) + 66px);
+        width: 54px;
+        height: 54px;
+    }
+    .call-fab__icon { width: 26px; height: 26px; }
 }
 
 /* ==========================================================================
@@ -1824,6 +1894,9 @@ button:focus-visible,
 
     /* Bring the tree logo into the hero (above the title) since the header tree is gone */
     .hero-logo { display: block; }
+
+    /* Surface the doctors on the front page now the stacked header is hidden */
+    .hero-doctors { display: block; }
 
     /* Compact sticky navbar: hamburger | brand | BOOK APPOINTMENT */
     .navbar {
@@ -1903,6 +1976,7 @@ button:focus-visible,
     .hero-content { width: 100%; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
+    .hero-doctors { margin-left: auto; margin-right: auto; text-align: center; }
     .hero-image-area { width: 100%; max-width: 620px; }
     .hero-media { max-width: 100%; aspect-ratio: 5 / 4; }
 
@@ -2065,7 +2139,7 @@ button:focus-visible,
     .btn-appointment { padding: 9px; gap: 0; }
     .btn-appointment .icon { font-size: 1.15rem; }
 
-    .hero-title { font-size: 2.2rem; }
+    .hero-title { font-size: 1.85rem; }
     .hero-description { font-size: 0.95rem; }
 
     .btn-whatsapp,

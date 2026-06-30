@@ -47,7 +47,7 @@
     <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <!-- Structured Data: Dentist / LocalBusiness -->
@@ -113,14 +113,14 @@
                 "name": "Dr. Karthik Ragupathy",
                 "honorificSuffix": "M.D.S",
                 "jobTitle": "Oral & Maxillofacial Surgeon",
-                "image": "https://revathydentistree.com/dr-karthik.jpg"
+                "image": "https://revathydentistree.com/dr-karthik-ragupathy.jpg"
             },
             {
                 "@type": "Dentist",
                 "name": "Dr. Geetha Karthik",
                 "honorificSuffix": "M.D.S",
                 "jobTitle": "Oral Medicine & Maxillofacial Radiology",
-                "image": "https://revathydentistree.com/dr-geetha.jpg"
+                "image": "https://revathydentistree.com/dr-geetha-karthik.jpg"
             }
         ],
         "hasOfferCatalog": {
@@ -327,7 +327,7 @@
             <a href="#home-section" class="single-menu-item active-link">HOME</a>
             <a href="#welcome-section" class="single-menu-item">ABOUT US</a>
             <a href="#doctors-section" class="single-menu-item">OUR DOCTORS</a>
-            <a href="#treatments-section" class="single-menu-item">TREATMENTS</a>
+            <a href="#treatments-section" class="single-menu-item">OUR SERVICES</a>
             <a href="#why-choose-section" class="single-menu-item">WHY US</a>
             <a href="blog/" class="single-menu-item">BLOG</a>
             <a href="#contact-section" class="single-menu-item">CONTACT US</a>
@@ -356,6 +356,17 @@
                         BOOK VIA WHATSAPP
                     </a>
                     <a href="#why-choose-section" class="btn-sub-appointment">BOOK APPOINTMENT</a>
+                </div>
+
+                <div class="hero-doctors">
+                    <div class="hero-doctor">
+                        <span class="hero-doctor__name">Dr. Karthik Ragupathy, <span class="hero-doctor__degree">M.D.S</span></span>
+                        <span class="hero-doctor__role">Chief Consultant — Oral &amp; Maxillofacial Surgery</span>
+                    </div>
+                    <div class="hero-doctor">
+                        <span class="hero-doctor__name">Dr. Geetha Karthik, <span class="hero-doctor__degree">M.D.S</span></span>
+                        <span class="hero-doctor__role">Associate Chief Consultant — Oral Medicine &amp; Maxillofacial Radiology</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-image-area">
@@ -450,13 +461,14 @@
         </div>
         <div class="doctors-container">
             <div class="doctor-card">
-                <div class="doctor-card__photo">
-                    <img src="dr-karthik.jpg" alt="Dr. Karthik Ragupathy, M.D.S — Oral & Maxillofacial Surgeon" class="doctor-photo">
+                <div class="doctor-card__photo doctor-card__photo--karthik">
+                    <img src="dr-karthik-ragupathy.jpg" alt="Dr. Karthik Ragupathy, M.D.S — Oral & Maxillofacial Surgeon" class="doctor-photo">
                 </div>
                 <div class="doc-card-details">
                     <h3>Dr. Karthik Ragupathy, <span class="degree-small">M.D.S</span></h3>
                     <p class="doc-card-specialty">Chief Consultant — Oral & Maxillofacial Surgeon</p>
-                    <p class="doc-card-bio">With 20+ years in general dentistry, Dr. Karthik specialises in oral &amp; maxillofacial surgery, combining extensive clinical knowledge with modern surgical techniques to treat complex dental and facial conditions. Professor, Department of Dentistry, Sri Manakula Vinayagar Medical College &amp; Hospital, Pondicherry.</p>
+                    <p class="doc-card-affiliation">Professor, Department of Dentistry, Sri Manakula Vinayagar Medical College &amp; Hospital, Pondicherry.</p>
+                    <p class="doc-card-bio">With 20+ years in general dentistry, Dr. Karthik specialises in oral &amp; maxillofacial surgery, combining extensive clinical knowledge with modern surgical techniques to treat complex dental and facial conditions.</p>
                     <div class="doc-expertise">
                         <span class="doc-expertise__label">Areas of Expertise</span>
                         <ul class="doc-chips">
@@ -473,12 +485,13 @@
             </div>
             <div class="doctor-card">
                 <div class="doctor-card__photo doctor-card__photo--geetha">
-                    <img src="dr-geetha.jpg" alt="Dr. Geetha Karthik, M.D.S — Oral Medicine & Maxillofacial Radiology" class="doctor-photo">
+                    <img src="dr-geetha-karthik.jpg" alt="Dr. Geetha Karthik, M.D.S — Oral Medicine & Maxillofacial Radiology" class="doctor-photo">
                 </div>
                 <div class="doc-card-details">
                     <h3>Dr. Geetha Karthik, <span class="degree-small">M.D.S</span></h3>
                     <p class="doc-card-specialty">Associate Chief Consultant — Oral Medicine & Maxillofacial Radiology</p>
-                    <p class="doc-card-bio">With 20+ years in general dentistry, Dr. Geetha specialises in oral medicine &amp; maxillofacial radiology, pairing strong clinical knowledge with advanced diagnostic skills for accurate evaluation and care. Associate Professor, Department of Dentistry, Sri Manakula Vinayagar Medical College &amp; Hospital, Pondicherry.</p>
+                    <p class="doc-card-affiliation">Associate Professor, Department of Dentistry, Sri Manakula Vinayagar Medical College &amp; Hospital, Pondicherry.</p>
+                    <p class="doc-card-bio">With 20+ years in general dentistry, Dr. Geetha specialises in oral medicine &amp; maxillofacial radiology, pairing strong clinical knowledge with advanced diagnostic skills for accurate evaluation and care.</p>
                     <div class="doc-expertise">
                         <span class="doc-expertise__label">Areas of Expertise</span>
                         <ul class="doc-chips">
@@ -1011,6 +1024,10 @@
             <p>© 2026 Revathy Dentistree. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <a href="tel:+919443702042" class="call-fab" aria-label="Call Revathy Dentistree">
+        <svg class="icon call-fab__icon" aria-hidden="true"><use href="#i-phone"/></svg>
+    </a>
 
     <a href="https://wa.me/919443702042" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat with us on WhatsApp">
         <svg class="whatsapp-fab__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-whatsapp"/></svg>
