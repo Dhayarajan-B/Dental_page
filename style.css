@@ -1790,40 +1790,48 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   13B. FLOATING WHATSAPP BUTTON
+   13B. FLOATING ACTION STACK — Book / Call / WhatsApp (with quick menu)
    ========================================================================== */
-.whatsapp-fab {
+.fab-stack {
     position: fixed;
     right: 24px;
     bottom: 24px;
-    width: 60px;
-    height: 60px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.fab {
+    position: relative;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-    background: var(--c-whatsapp);
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12);
-    z-index: 1000;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
     text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
     transition: transform 0.35s var(--ease), background-color 0.3s ease, box-shadow 0.35s var(--ease);
 }
 
-.whatsapp-fab:hover {
-    background-color: var(--c-whatsapp-dark);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 16px 32px rgba(37, 211, 102, 0.5), 0 6px 16px rgba(0, 0, 0, 0.18);
-}
+.fab:hover { transform: translateY(-3px) scale(1.05); }
+.fab:active { transform: translateY(-1px) scale(1); }
+.fab__icon { width: 26px; height: 26px; color: #fff; stroke-width: 1.8; }
 
-.whatsapp-fab:active { transform: translateY(-1px) scale(1); }
+.fab--book { background: var(--c-accent); box-shadow: 0 10px 24px rgba(181, 140, 68, 0.45), 0 4px 12px rgba(0, 0, 0, 0.12); }
+.fab--book:hover { background: var(--c-accent-dark); }
+.fab--call { background: var(--c-primary); box-shadow: 0 10px 24px rgba(27, 77, 62, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12); }
+.fab--call:hover { background: var(--c-primary-dark); }
+.fab--whatsapp { background: var(--c-whatsapp); box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12); }
+.fab--whatsapp:hover { background: var(--c-whatsapp-dark); }
 
-.whatsapp-fab__icon {
-    width: 32px;
-    height: 32px;
-    color: #fff;
-}
-
+.whatsapp-fab__icon { width: 32px; height: 32px; color: #fff; }
+.fab--whatsapp .whatsapp-fab__icon { width: 30px; height: 30px; }
 .whatsapp-fab__pulse {
     position: absolute;
     inset: 0;
@@ -1838,53 +1846,127 @@ button:focus-visible,
     100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* ==========================================================================
-   13C. FLOATING CALL BUTTON (sits just above the WhatsApp button)
-   ========================================================================== */
-.call-fab {
-    position: fixed;
-    right: 24px;
-    bottom: 96px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--c-primary);
-    color: #fff;
+/* WhatsApp quick menu — pops up above the stack */
+.fab-menu {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s var(--ease), visibility 0.25s;
+}
+.fab-stack.is-open .fab-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.fab-menu a {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 24px rgba(27, 77, 62, 0.4), 0 4px 12px rgba(0, 0, 0, 0.12);
-    z-index: 1000;
+    gap: 10px;
+    white-space: nowrap;
+    background: #fff;
+    color: var(--c-ink);
+    padding: 11px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--c-line);
+    box-shadow: var(--shadow-md);
     text-decoration: none;
-    transition: transform 0.35s var(--ease), background-color 0.3s ease, box-shadow 0.35s var(--ease);
+    font-size: 0.84rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
-
-.call-fab:hover {
-    background-color: var(--c-primary-dark);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 16px 32px rgba(27, 77, 62, 0.5), 0 6px 16px rgba(0, 0, 0, 0.18);
-}
-
-.call-fab:active { transform: translateY(-1px) scale(1); }
-
-.call-fab__icon { width: 28px; height: 28px; color: #fff; stroke-width: 1.8; }
+.fab-menu a:hover { transform: translateX(-3px); color: var(--c-primary); }
+.fab-menu a .icon { width: 18px; height: 18px; color: var(--c-primary); flex-shrink: 0; }
 
 @media (max-width: 768px) {
-    .whatsapp-fab {
-        right: max(18px, env(safe-area-inset-right));
-        bottom: max(18px, env(safe-area-inset-bottom));
-        width: 54px;
-        height: 54px;
+    .fab-stack {
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
+        gap: 12px;
     }
-    .whatsapp-fab__icon { width: 28px; height: 28px; }
+    .fab { width: 52px; height: 52px; }
+    .fab__icon { width: 24px; height: 24px; }
+    .fab--whatsapp .whatsapp-fab__icon { width: 27px; height: 27px; }
+    .fab-menu a { font-size: 0.8rem; padding: 10px 14px; max-width: 70vw; }
+}
 
-    .call-fab {
-        right: max(18px, env(safe-area-inset-right));
-        bottom: calc(max(18px, env(safe-area-inset-bottom)) + 66px);
-        width: 54px;
-        height: 54px;
-    }
-    .call-fab__icon { width: 26px; height: 26px; }
+/* Footer brand logo badge */
+.footer-logo-mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #fff;
+}
+
+/* Footer "Book Appointment" CTA (gold, stands out on the dark footer) */
+.footer-book-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    background: var(--c-accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    transition: background-color 0.3s ease, transform 0.3s var(--ease);
+}
+.footer-book-btn:hover { background: var(--c-accent-dark); transform: translateY(-2px); }
+
+/* ==========================================================================
+   13D. BOOKING PAGE (embedded Clinicia widget)
+   ========================================================================== */
+.booking-hero {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 54px var(--side-x) 8px;
+}
+.booking-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    color: var(--c-primary);
+    font-weight: 700;
+    margin-top: 10px;
+    line-height: 1.1;
+}
+.booking-lead {
+    margin-top: 14px;
+    color: var(--c-ink-muted);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+.booking-embed-wrap {
+    max-width: 960px;
+    margin: 28px auto 0;
+    padding: 0 var(--side-x) 40px;
+}
+.booking-frame {
+    width: 100%;
+    min-height: 1150px;
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+}
+.booking-fallback {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--c-ink-soft);
+}
+.booking-fallback a { color: var(--c-accent-text); font-weight: 600; text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .booking-frame { min-height: 1250px; border-radius: var(--radius-md); }
 }
 
 /* ==========================================================================

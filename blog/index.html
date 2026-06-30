@@ -34,6 +34,7 @@
     <svg width="0" height="0" class="svg-symbols" aria-hidden="true" focusable="false">
         <defs>
             <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+            <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
             <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></symbol>
             <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7.5-7 7.5-12.5a7.5 7.5 0 1 0-15 0c0 5.5 7.5 12.5 7.5 12.5z"/><circle cx="12" cy="9" r="2.7"/></symbol>
             <symbol id="i-phone" viewBox="0 0 24 24"><path d="M21.5 16.5v2.6a2 2 0 0 1-2.2 2 19.5 19.5 0 0 1-8.5-3 19 19 0 0 1-5.9-5.9 19.5 19.5 0 0 1-3-8.6 2 2 0 0 1 2-2.2h2.6a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.6 9.1a16 16 0 0 0 6.3 6.3l1.2-1.1a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></symbol>
@@ -97,6 +98,7 @@
         <div class="footer-grid-container">
             <div class="footer-col brand-col">
                 <div class="footer-logo-layout">
+                    <img src="../logo-icon-512.png" alt="" class="footer-logo-mark">
                     <h4>REVATHY DENTISTREE</h4>
                 </div>
                 <p class="brand-subtext">Growing Miles of Smiles</p>
@@ -113,14 +115,27 @@
         </div>
     </footer>
 
-    <a href="tel:+919443702042" class="call-fab" aria-label="Call Revathy Dentistree">
-        <svg class="icon call-fab__icon" aria-hidden="true"><use href="#i-phone"/></svg>
-    </a>
+    <!-- Floating action buttons: Book / Call / WhatsApp (with quick menu) -->
+    <div class="fab-stack">
+        <div class="fab-menu" role="menu" aria-label="Contact options">
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Revathy%20Dentistree." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-calendar"/></svg> Book Appointment</a>
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20have%20an%20enquiry." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-chat"/></svg> General Enquiry</a>
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20would%20like%20to%20share%20my%20dental%20reports%20%2F%20X-rays." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-chat"/></svg> Share Reports / X-rays</a>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=11.9401,79.4861" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-pin"/></svg> Get Clinic Location</a>
+        </div>
+        <button type="button" class="fab fab--whatsapp" aria-label="WhatsApp and contact options" aria-expanded="false" aria-haspopup="true">
+            <svg class="whatsapp-fab__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            <span class="whatsapp-fab__pulse"></span>
+        </button>
+        <a href="tel:+919443702042" class="fab fab--call" aria-label="Call Revathy Dentistree">
+            <svg class="icon fab__icon" aria-hidden="true"><use href="#i-phone"/></svg>
+        </a>
+        <a href="../book/" class="fab fab--book" aria-label="Book an appointment">
+            <svg class="icon fab__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+        </a>
+    </div>
 
-    <a href="https://wa.me/919443702042" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat with us on WhatsApp">
-        <svg class="whatsapp-fab__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-whatsapp"/></svg>
-        <span class="whatsapp-fab__pulse"></span>
-    </a>
+    <script src="../fab.js" defer></script>
 
 </body>
 </html>

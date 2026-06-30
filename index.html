@@ -333,8 +333,7 @@
             <a href="#contact-section" class="single-menu-item">CONTACT US</a>
         </div>
 
-        <!-- TODO: add your booking link in href below (e.g. WhatsApp / booking form) -->
-        <a href="#" class="btn-appointment" aria-label="Book appointment">
+        <a href="book/" class="btn-appointment" aria-label="Book an appointment">
             <svg class="icon icon--sm"><use href="#i-calendar"/></svg>
             <span class="btn-appointment__full">BOOK APPOINTMENT</span>
             <span class="btn-appointment__short">BOOK</span>
@@ -356,7 +355,7 @@
                         <svg class="icon icon--sm"><use href="#i-chat"/></svg>
                         BOOK VIA WHATSAPP
                     </a>
-                    <a href="#why-choose-section" class="btn-sub-appointment">BOOK APPOINTMENT</a>
+                    <a href="book/" class="btn-sub-appointment">BOOK APPOINTMENT</a>
                 </div>
 
                 <div class="hero-doctors">
@@ -981,6 +980,7 @@
         <div class="footer-grid-container">
             <div class="footer-col brand-col">
                 <div class="footer-logo-layout">
+                    <img src="logo-icon-512.png" alt="" class="footer-logo-mark">
                     <h4>REVATHY DENTISTREE</h4>
                 </div>
                 <p class="brand-subtext">Growing Miles of Smiles</p>
@@ -992,7 +992,7 @@
                     <li><a href="#home-section">Home</a></li>
                     <li><a href="#welcome-section">About Us</a></li>
                     <li><a href="#doctors-section">Our Doctors</a></li>
-                    <li><a href="#treatments-section">Treatments</a></li>
+                    <li><a href="#treatments-section">Our Services</a></li>
                     <li><a href="#why-choose-section">Why Us</a></li>
                     <li><a href="blog/">Blog</a></li>
                     <li><a href="#contact-section">Contact Us</a></li>
@@ -1001,12 +1001,14 @@
             <div class="footer-col links-col">
                 <h4>OUR SERVICES</h4>
                 <ul>
-                    <li><a href="#treatments-section">Oral Surgery</a></li>
+                    <li><a href="#treatments-section">Restorative &amp; Aesthetic Dentistry</a></li>
+                    <li><a href="#treatments-section">Root Canal Therapy (RCT)</a></li>
+                    <li><a href="#treatments-section">Crowns, Bridges &amp; Dentures</a></li>
+                    <li><a href="#treatments-section">Dental Implants</a></li>
                     <li><a href="#treatments-section">Paediatric Dentistry</a></li>
-                    <li><a href="#treatments-section">Orthodontics</a></li>
-                    <li><a href="#treatments-section">Restorative Dentistry</a></li>
-                    <li><a href="#treatments-section">Cosmetic Dentistry</a></li>
-                    <li><a href="#treatments-section">Preventive Care</a></li>
+                    <li><a href="#treatments-section">Oral &amp; Maxillofacial Surgery</a></li>
+                    <li><a href="#treatments-section">Ultrasonic Cleaning &amp; Periodontal Care</a></li>
+                    <li><a href="#treatments-section">Orthodontics &amp; Clear Aligners</a></li>
                 </ul>
             </div>
             <div class="footer-col contact-col">
@@ -1017,8 +1019,16 @@
                 </p>
                 <p>
                     <svg class="icon icon--xs"><use href="#i-phone"/></svg>
-                    9443702042
+                    <a href="tel:+919443702042">9443702042</a>
                 </p>
+                <p>
+                    <svg class="icon icon--xs"><use href="#i-clock"/></svg>
+                    Mon – Sat: 9.00 AM – 8.00 PM &nbsp;·&nbsp; Sun: By Appointment
+                </p>
+                <a href="book/" class="footer-book-btn">
+                    <svg class="icon icon--sm"><use href="#i-calendar"/></svg>
+                    BOOK APPOINTMENT
+                </a>
             </div>
         </div>
         <div class="footer-bottom-bar">
@@ -1026,14 +1036,27 @@
         </div>
     </footer>
 
-    <a href="tel:+919443702042" class="call-fab" aria-label="Call Revathy Dentistree">
-        <svg class="icon call-fab__icon" aria-hidden="true"><use href="#i-phone"/></svg>
-    </a>
+    <!-- Floating action buttons: Book / Call / WhatsApp (with quick menu) -->
+    <div class="fab-stack">
+        <div class="fab-menu" role="menu" aria-label="Contact options">
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Revathy%20Dentistree." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-calendar"/></svg> Book Appointment</a>
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20have%20an%20enquiry." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-chat"/></svg> General Enquiry</a>
+            <a href="https://wa.me/919443702042?text=Hello%2C%20I%20would%20like%20to%20share%20my%20dental%20reports%20%2F%20X-rays." target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-chat"/></svg> Share Reports / X-rays</a>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=11.9401,79.4861" target="_blank" rel="noopener" role="menuitem"><svg class="icon"><use href="#i-pin"/></svg> Get Clinic Location</a>
+        </div>
+        <button type="button" class="fab fab--whatsapp" aria-label="WhatsApp and contact options" aria-expanded="false" aria-haspopup="true">
+            <svg class="whatsapp-fab__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            <span class="whatsapp-fab__pulse"></span>
+        </button>
+        <a href="tel:+919443702042" class="fab fab--call" aria-label="Call Revathy Dentistree">
+            <svg class="icon fab__icon" aria-hidden="true"><use href="#i-phone"/></svg>
+        </a>
+        <a href="book/" class="fab fab--book" aria-label="Book an appointment">
+            <svg class="icon fab__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+        </a>
+    </div>
 
-    <a href="https://wa.me/919443702042" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat with us on WhatsApp">
-        <svg class="whatsapp-fab__icon" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-whatsapp"/></svg>
-        <span class="whatsapp-fab__pulse"></span>
-    </a>
+    <script src="fab.js" defer></script>
 
     <script>
         (function () {
