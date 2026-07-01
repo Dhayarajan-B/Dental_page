@@ -548,7 +548,6 @@ a { color: inherit; }
     padding: 28px;
     box-shadow: var(--shadow-sm);
     transition: transform 0.75s var(--ease), box-shadow 0.75s var(--ease), border-color 0.5s ease;
-    will-change: transform;
 }
 
 .doctor-card__photo { align-self: flex-start; }
@@ -789,12 +788,18 @@ a { color: inherit; }
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     transition: transform 0.85s var(--ease);
-    will-change: transform;
 }
 
 .treatment-card.is-flipped .treatment-card__inner {
     transform: rotateY(180deg);
 }
+
+/* Promote to a GPU layer ONLY while flipping. A permanent will-change keeps the
+   card on a composited layer that high-DPI mobile browsers rasterise at reduced
+   resolution — which softens the idle card text. Scoping it keeps idle cards crisp. */
+.treatment-card:hover .treatment-card__inner,
+.treatment-card:focus-within .treatment-card__inner,
+.treatment-card.is-flipped .treatment-card__inner { will-change: transform; }
 
 .treatment-card__face {
     position: absolute;
@@ -1109,7 +1114,6 @@ button:focus-visible,
     transition: transform 0.75s var(--ease), box-shadow 0.75s var(--ease), border-color 0.5s ease;
     position: relative;
     overflow: hidden;
-    will-change: transform;
 }
 
 .why-feature::after {
