@@ -1601,6 +1601,13 @@ button:focus-visible,
 
 .patient-name { font-size: 0.92rem; color: var(--c-primary); font-weight: 700; letter-spacing: 0.3px; }
 
+/* Live Google reviews widget (Featurable) */
+.reviews-embed {
+    max-width: var(--container);
+    margin: 8px auto 0;
+    min-height: 120px;
+}
+
 /* Google reviews call-to-action under the testimonials */
 .reviews-cta {
     display: flex;
