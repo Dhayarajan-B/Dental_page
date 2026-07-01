@@ -1,0 +1,11 @@
+# OS / editor junk
+Thumbs.db
+.DS_Store
+*.swp
+
+# Client source / working files (not part of the deployed site)
+Treatment.docx
+Icons.jpeg
+
+# Local scratch / screenshots
+_*.png
