@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="#1b4d3e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- tooth body -->
+  <path d="M100 34 C71 34 53 51 53 78 C53 104 61 128 71 150 C76 161 85 160 89 148 C93 137 96 132 100 132 C104 132 107 137 111 148 C115 160 124 161 129 150 C139 128 147 104 147 78 C147 51 129 34 100 34 Z"/>
+  <!-- crown margin (the cap edge that defines a dental crown) -->
+  <path d="M58 90 C78 101 122 101 142 90"/>
+  <!-- cap dome accent -->
+  <path d="M70 64 C84 55 116 55 130 64"/>
+  <!-- sparkle, large -->
+  <path d="M158 52 c2.6 8.5 4.4 10.3 12.9 12.9 -8.5 2.6 -10.3 4.4 -12.9 12.9 -2.6 -8.5 -4.4 -10.3 -12.9 -12.9 8.5 -2.6 10.3 -4.4 12.9 -12.9 Z"/>
+  <!-- sparkle, small -->
+  <path d="M40 62 c1.8 5.6 3 6.8 8.6 8.6 -5.6 1.8 -6.8 3 -8.6 8.6 -1.8 -5.6 -3 -6.8 -8.6 -8.6 5.6 -1.8 6.8 -3 8.6 -8.6 Z"/>
+</svg>
