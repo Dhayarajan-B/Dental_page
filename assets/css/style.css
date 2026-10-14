@@ -398,7 +398,7 @@ a { color: inherit; }
 
 .hero-media {
     width: 100%;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 500 / 817;
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
@@ -419,7 +419,7 @@ a { color: inherit; }
 .hero-video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -2071,7 +2071,7 @@ button:focus-visible,
     .main-header { display: none; }
 
     /* Bring the full brand lockup into the hero since the stacked header is gone:
-       tree logo  ->  REVATHY DENTISTREE (bold)  ->  Growing Miles of Smiles (gold) */
+       tree logo  ->  REVATHY DENTISTREE (bold)  ->  Nurturing Smiles (gold) */
     .hero-logo { display: block; margin-bottom: 12px; }
 
     .hero-brand-name {
@@ -2085,7 +2085,7 @@ button:focus-visible,
         text-transform: uppercase;
     }
 
-    /* "Growing Miles of Smiles" becomes the golden tagline beneath the name */
+    /* "Nurturing Smiles" becomes the golden tagline beneath the name */
     .hero-title {
         font-size: clamp(1.05rem, 4.6vw, 1.5rem);
         font-weight: 600;
@@ -2180,7 +2180,7 @@ button:focus-visible,
     .hero-buttons { justify-content: center; }
     .hero-doctors { margin-left: auto; margin-right: auto; text-align: center; }
     .hero-image-area { width: 100%; max-width: 620px; }
-    .hero-media { max-width: 100%; aspect-ratio: 5 / 4; }
+    .hero-media { max-width: 100%; aspect-ratio: 500 / 817; max-height: 72vh; }
 
     /* Why-features: 3 cards at ~250px each is too cramped, drop to 1 */
     .why-features-grid {
@@ -2237,7 +2237,7 @@ button:focus-visible,
     .hero-content { width: 100%; }
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
-    .hero-media { max-width: 100%; aspect-ratio: 4 / 5; max-height: 70vh; }
+    .hero-media { max-width: 100%; aspect-ratio: 500 / 817; max-height: 70vh; }
 
     /* Navbar: give the brand name room by collapsing BOOK APPOINTMENT → BOOK */
     .navbar-brand {
@@ -2396,7 +2396,44 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   17. REDUCED MOTION
+   17. SCROLL REVEAL & ENTRANCE MOTION
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    transition-delay: var(--reveal-delay, 0s);
+    will-change: opacity, transform;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+}
+.hero-logo,
+.hero-brand-name,
+.hero-title,
+.hero-description,
+.hero-buttons,
+.hero-doctors {
+    animation: heroFadeUp 0.9s var(--ease) both;
+}
+.hero-brand-name { animation-delay: 0.08s; }
+.hero-title { animation-delay: 0.16s; }
+.hero-description { animation-delay: 0.24s; }
+.hero-buttons { animation-delay: 0.32s; }
+.hero-doctors { animation-delay: 0.4s; }
+.hero-media {
+    animation: heroFadeUp 1s var(--ease) both;
+    animation-delay: 0.2s;
+}
+
+/* ==========================================================================
+   18. REDUCED MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -2406,5 +2443,9 @@ button:focus-visible,
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
